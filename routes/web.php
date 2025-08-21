@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ResourceController;
+//use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,5 +37,6 @@ Route::prefix('greeting')->group(function () {
 Route::view('/master','master');
 Route::view('/feature1','feature1');
 Route::view('/feature2','feature2');
+Route::get('student',[StudentController::class, 'index']);
 
-Route::resource('student', ResourceController::class);
+//Route::resource('student', ResourceController::class);
