@@ -39,5 +39,7 @@ Route::view('/feature1','feature1');
 Route::view('/feature2','feature2');
 Route::get('student',[StudentController::class, 'index']);
 Route::get('student/course',[StudentController::class, 'getcourse']);
+Route::get('student/create',[StudentController::class, 'create'])->name('student.create');
+Route::post('student/store',[StudentController::class, 'store'])->name('student.store');
 
 //Route::resource('student', ResourceController::class);
