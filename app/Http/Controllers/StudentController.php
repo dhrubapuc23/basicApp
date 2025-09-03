@@ -53,4 +53,10 @@ class StudentController extends Controller
         //dd('Student record created successfully.');
         return redirect()->route('student.create')->with('success', 'Student record created successfully.');
     }
+
+    public function showData()
+    {
+        $students = DB::table('students')->get();
+        return view('show_students', ['students' => $students]);
+    }
 }
