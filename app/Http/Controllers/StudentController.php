@@ -59,4 +59,26 @@ class StudentController extends Controller
         $students = DB::table('students')->paginate(20);
         return view('show_students', ['students' => $students]);
     }
+
+    public function EditData($id)
+    {
+        $student = DB::table('students')->find($id);
+        return view('edit_student', ['student' => $student]);
+    }
+
+    public function UpdateData(StudentRequest $request, string $id)
+    {
+        DB::table('students')->where('id', $id)->update([
+            'student_name' => $request->name,
+            'email' => $request->email,
+            'semester' => $request->semester,
+        ]);
+        return redirect()->route('student.show')->with('success', 'Student record updated successfully.');
+    }
+
+    public function DeleteData(string $id)
+    {
+        DB::table('students')->where('id', $id)->delete();
+        return redirect()->route('student.show')->with('success', 'Student record deleted successfully.');
+    }
 }

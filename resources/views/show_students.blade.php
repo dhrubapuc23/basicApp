@@ -4,6 +4,11 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Students List</h4>
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -11,8 +16,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Semester</th>
-                            {{-- <th>Edit</th> --}}
-                            {{-- <th>Delete</th> --}}
+                            <th>Edit</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,8 +27,8 @@
                             <td>{{$student->student_name}}</td>
                             <td>{{$student->email}}</td>
                             <td>{{$student->semester}}</td>
-                            {{-- <td><a href="{{url('student/edit/'.$student->id)}}" class="btn btn-primary">Edit</a></td> --}}
-                            {{-- <td><a href="{{url('student/delete/'.$student->id)}}" class="btn btn-danger">Delete</a></td> --}}
+                            <td><a href="{{route('student.edit',[$student->id])}}" class="btn btn-primary">Edit</a></td>
+                            <td><a href="{{url('student/delete/'.$student->id)}}" class="btn btn-danger">Delete</a></td>
                         </tr>
                         @endforeach
                     </tbody>
