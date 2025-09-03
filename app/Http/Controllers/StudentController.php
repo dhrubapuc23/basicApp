@@ -50,7 +50,7 @@ class StudentController extends Controller
             'email' => $request->email,
             'semester' => $request->semester,
         ]);
-        dd('Student created successfully.');
-        //return redirect()->route('student.create')->with('success', 'Student created successfully.');
+        //dd('Student record created successfully.');
+        return redirect()->route('student.create')->with('success', 'Student record created successfully.');
     }
 }
