@@ -81,4 +81,42 @@ class StudentController extends Controller
         DB::table('students')->where('id', $id)->delete();
         return redirect()->route('student.show')->with('success', 'Student record deleted successfully.');
     }
+
+    public function uploadFile()
+    {
+        return view('file_upload');
+    }
+
+    public function uploadFileStore(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048', // max 2MB
+        ]);
+
+        $file = $request->file('file');
+        $customFileName = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs('/', $customFileName, 'public');
+        // Save file path to database
+        DB::table('files')->insert([
+            'file_path' => $filePath,
+        ]);
+        return redirect()->route('student.file.upload')->with('success', 'File uploaded successfully.');
+
+        //dd($filePath);
+
+        // if ($request->file('file')->isValid()) {
+        //     $filePath = $request->file('file')->store('uploads', 'dir_public');
+
+        //     // Save file path to database
+        //     DB::table('files')->insert([
+        //         'file_path' => $filePath,
+        //         'created_at' => now(),
+        //         'updated_at' => now(),
+        //     ]);
+
+        //     return redirect()->route('student.file.upload')->with('success', 'File uploaded successfully.');
+        // }
+
+        // return redirect()->route('student.file.upload')->with('error', 'File upload failed.');
+    }
 }
