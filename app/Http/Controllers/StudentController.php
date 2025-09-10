@@ -120,4 +120,15 @@ class StudentController extends Controller
 
         // return redirect()->route('student.file.upload')->with('error', 'File upload failed.');
     }
+
+    public function userinfo()
+    {
+        return view('user_info');
+    }
+
+    public function storeUserInfo(Request $request)
+    {
+        //$roles = DB::table('newusers')->where('email',$request->email)->value('role');
+        dd('admin page');
+    }
 }

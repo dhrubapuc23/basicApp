@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 //use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\StudentController;
+use App\Http\Middleware\StudentMiddleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,5 +48,7 @@ Route::post('student/update/{id}',[StudentController::class, 'UpdateData'])->nam
 Route::get('student/delete/{id}',[StudentController::class, 'DeleteData'])->name('student.delete');
 Route::get('file-upload',[StudentController::class, 'uploadFile'])->name('student.file.upload');
 Route::post('file-upload',[StudentController::class, 'uploadFileStore'])->name('student.file.store');
+Route::get('user-info',[StudentController::class, 'userinfo'])->name('user.info');
+Route::post('user-submit',[StudentController::class, 'storeUserInfo'])->name('user.submit')->middleware(StudentMiddleware::class);
 
 //Route::resource('student', ResourceController::class);
