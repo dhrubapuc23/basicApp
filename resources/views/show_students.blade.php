@@ -1,5 +1,5 @@
-@extends('master')
-@section('content1')
+@extends('layouts.app')
+@section('content')
     <div class="col-md-8" style="margin: auto;">
         <div class="card">
             <div class="card-body">
