@@ -4,6 +4,7 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Students List</h4>
+                <a href="{{route('get.pdf')}}" class="btn btn-info mt-2 mb-2" style="float: right;">Download</a>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}

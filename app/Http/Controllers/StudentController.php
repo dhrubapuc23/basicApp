@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StudentRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 class StudentController extends Controller
 {
     public function index()
@@ -130,5 +131,12 @@ class StudentController extends Controller
     {
         //$roles = DB::table('newusers')->where('email',$request->email)->value('role');
         dd('admin page');
+    }
+
+    public function getPDF()
+    {
+        $students = DB::table('students')->get();
+        $pdf = Pdf::loadView('student_pdf', ['students' => $students]);
+        return $pdf->download(time().'students.pdf');
     }
 }

@@ -56,3 +56,4 @@ Route::post('user-submit',[StudentController::class, 'storeUserInfo'])->name('us
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('get-pdf', [StudentController::class, 'getPDF'])->name('get.pdf');
