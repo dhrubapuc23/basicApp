@@ -39,7 +39,7 @@ Route::view('/master','master');
 Route::view('/feature1','feature1');
 Route::view('/feature2','feature2');
 Route::get('student',[StudentController::class, 'index']);
-Route::get('student/course',[StudentController::class, 'getcourse']);
+Route::get('student/course',[StudentController::class, 'getcourse'])->middleware('student.auth:21');
 Route::get('student/create',[StudentController::class, 'create'])->name('student.create');
 Route::post('student/store',[StudentController::class, 'store'])->name('student.store');
 Route::get('student/show',[StudentController::class, 'showData'])->name('student.show')->middleware('auth');

@@ -14,15 +14,20 @@ class StudentMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next, $Minage): Response
     {
-        $roles = DB::table('newusers')->where('email',$request->email)->value('role');
-        if($roles === 1)
+        // $roles = DB::table('newusers')->where('email',$request->email)->value('role');
+        // if($roles === 1)
+        // {
+        //     return redirect()->route('student.show');
+        // }
+        //dd('route middleware');
+        if($request->query('age') >= $Minage)
         {
-            return redirect()->route('student.show');
+            return $next($request);
         }
-
-        return $next($request);
+        return response("You are not allowed to access this page.");
+        
         //abort(403);
         
     }
