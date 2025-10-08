@@ -23,7 +23,7 @@ Route::get('/user/{id}/{name?}', function (string $id, string $name = null) {
 
 Route::get('/home', [UserController::class, 'index']);
 
-Route::prefix('greeting')->group(function () {
+Route::prefix('greeting')->middleware('student.auth:21')->group(function () {
         Route::get('/about', function () {
         return 'Greeting Page';
     })->name('gt');
@@ -57,3 +57,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('get-pdf', [StudentController::class, 'getPDF'])->name('get.pdf');
+Route::get('send-email', [StudentController::class, 'sendEmail'])->name('send.email');
